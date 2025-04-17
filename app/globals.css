@@ -1,0 +1,400 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #bafc50;
+  --primary-dark: #a5e639;
+  --primary-light: #c5ff6b;
+  --dark: #021814;
+  --dark-2: #171919;
+  --dark-3: #1a1a1a;
+  --light: #ffffff;
+  --gray: #8a8a8a;
+  --gray-light: #e0e0e0;
+}
+
+/* Base styles */
+body {
+  background-color: var(--dark);
+  color: var(--light);
+  font-family: 'Inter', sans-serif;
+}
+
+:root,
+html {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Custom Classes */
+.font-inter-black {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+}
+
+.font-inter-bold {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+.font-inter-medium {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.font-inter-regular {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.font-inter-light {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+}
+
+/* Background Grid */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* Scroll Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Hover Effects */
+.hover-scale {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+/* Button Styles */
+.btn {
+  @apply font-bold rounded-full transition-all duration-300 inline-flex items-center justify-center;
+}
+
+.btn-primary {
+  @apply btn bg-[var(--primary)] text-[var(--dark)] hover:bg-[var(--primary-light)] px-6 py-3;
+  box-shadow: 0 4px 20px rgba(186, 252, 80, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 25px rgba(186, 252, 80, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  @apply btn border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[var(--dark)] px-6 py-3;
+}
+
+.btn-outline:hover {
+  box-shadow: 0 6px 25px rgba(186, 252, 80, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  @apply px-4 py-2 text-sm;
+}
+
+.btn-lg {
+  @apply px-8 py-4 text-lg;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-[var(--dark-2)] rounded-2xl overflow-hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(186, 252, 80, 0.2);
+}
+
+/* Icon Styles */
+.icon-box {
+  @apply flex items-center justify-center rounded-lg transition-all duration-300;
+  background: rgba(186, 252, 80, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: var(--primary);
+}
+
+.icon-box:hover {
+  background: rgba(186, 252, 80, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15), 0 0 10px rgba(186, 252, 80, 0.2);
+}
+
+.icon-box-sm {
+  @apply w-8 h-8;
+}
+
+.icon-box-md {
+  @apply w-10 h-10;
+}
+
+.icon-box-lg {
+  @apply w-12 h-12;
+}
+
+/* Typography */
+.heading-xl {
+  @apply font-black text-5xl md:text-7xl lg:text-8xl leading-tight tracking-tight;
+}
+
+.heading-lg {
+  @apply font-black text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight;
+}
+
+.heading-md {
+  @apply font-bold text-3xl md:text-4xl leading-tight;
+}
+
+.heading-sm {
+  @apply font-bold text-2xl md:text-3xl leading-tight;
+}
+
+.subheading {
+  @apply font-bold text-sm uppercase tracking-wider;
+}
+
+.body-text {
+  @apply font-medium text-base md:text-lg leading-relaxed;
+}
+
+/* Section Styles */
+.section-padding {
+  @apply py-16 md:py-24 lg:py-32;
+}
+
+/* Gradient Text */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.text-transparent {
+  color: transparent;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Service Section */
+.service-item {
+  @apply relative overflow-hidden border-b border-[rgba(255,255,255,0.1)] transition-all duration-300;
+}
+
+.service-item:last-child {
+  border-bottom: none;
+}
+
+.service-item:hover .service-overlay {
+  opacity: 1;
+}
+
+.service-item:hover .service-name {
+  color: var(--primary);
+  transform: translateX(10px);
+}
+
+.service-name {
+  @apply transition-all duration-300;
+}
+
+.service-overlay {
+  @apply absolute inset-0 bg-gradient-to-r from-[rgba(186,252,80,0.1)] to-transparent opacity-0 transition-opacity duration-300;
+}
+
+/* Reveal on Scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Blob Animation */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  z-index: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.blob-primary {
+  background-color: var(--primary);
+}
+
+.blob-animate {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Form Styles */
+.form-input {
+  @apply w-full bg-dark-3 border border-white/10 rounded-lg px-4 py-3 text-white font-medium focus:outline-none focus:border-primary transition-colors duration-300;
+}
+
+.form-label {
+  @apply block text-white font-bold mb-2;
+}
+
+.form-button {
+  @apply w-full py-3 px-6 rounded-lg font-bold transition-all duration-300 flex justify-center items-center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heading-xl {
+    @apply text-4xl md:text-5xl;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl;
+  }
+
+  .heading-sm {
+    @apply text-xl md:text-2xl;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-16;
+  }
+
+  .container {
+    @apply px-4;
+  }
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Utility classes */
+.bg-dark {
+  background-color: var(--dark);
+}
+
+.bg-dark-2 {
+  background-color: var(--dark-2);
+}
+
+.bg-dark-3 {
+  background-color: var(--dark-3);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.text-dark {
+  color: var(--dark);
+}
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Page hidden (background tab) optimizations */
+.page-hidden video,
+.page-hidden audio {
+  opacity: 0;
+}
+
+/* Fix for Safari overflow issues */
+.overflow-fix {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}

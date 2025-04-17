@@ -62,7 +62,7 @@ export default function Footer() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.1, ease: transitions.easeOut }}
             >
-              <h3 className="text-white font-medium text-xl mb-6">Quick Links</h3>
+              <h3 className="text-white font-normal text-xl mb-6">Quick Links</h3>
               <ul className="space-y-3">
                 {navLinks.map((link, index) => (
                   <li key={index}>
@@ -83,7 +83,7 @@ export default function Footer() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.2, ease: transitions.easeOut }}
             >
-              <h3 className="text-white font-medium text-xl mb-6">Contact Us</h3>
+              <h3 className="text-white font-normal text-xl mb-6">Contact Us</h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <Icon name="mail" className="text-primary mt-1 mr-3" size={18} />
@@ -111,7 +111,7 @@ export default function Footer() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.3, ease: transitions.easeOut }}
             >
-              <h3 className="text-white font-medium text-xl mb-6">Newsletter</h3>
+              <h3 className="text-white font-normal text-xl mb-6">Newsletter</h3>
               <p className="text-white/70 mb-4">Subscribe to get the latest updates and news.</p>
               <form className="flex">
                 <input

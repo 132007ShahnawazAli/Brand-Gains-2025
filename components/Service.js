@@ -161,7 +161,7 @@ export default function Service() {
               <div key={index} ref={addToRefs} className="bg-dark-2 rounded-xl p-4 flex items-center">
                 <div className="icon-box icon-box-md mr-4 flex-shrink-0">{service.icon}</div>
                 <div>
-                  <h3 className="font-medium text-lg text-white">{service.name}</h3>
+                  <h3 className="font-normal text-lg text-white">{service.name}</h3>
                   <p className="text-white/70 text-sm">{service.description}</p>
                 </div>
               </div>

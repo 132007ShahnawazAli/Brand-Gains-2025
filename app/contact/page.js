@@ -139,21 +139,21 @@ export default function ContactPage() {
                   <div className="icon-box icon-box-md mr-4">
                     <Icon name="mail" size={20} />
                   </div>
-                  <div className="text-lg font-metropolis-medium">brandgains@gmail.com</div>
+                  <div className="text-lg font-medium">brandgains@gmail.com</div>
                 </div>
 
                 <div className="flex items-center text-white">
                   <div className="icon-box icon-box-md mr-4">
                     <Icon name="phone" size={20} />
                   </div>
-                  <div className="text-lg font-metropolis-medium">
+                  <div className="text-lg font-medium">
                     +91 9810544923 <span className="text-primary">Vansh Goel</span>
                   </div>
                 </div>
               </div>
 
               <div className="p-6 rounded-xl bg-primary/5 border border-primary/20">
-                <h3 className="text-primary font-metropolis-bold mb-4">Why Work With Us?</h3>
+                <h3 className="text-primary font-bold mb-4">Why Work With Us?</h3>
                 <ul className="text-white space-y-3">
                   <li className="flex items-start">
                     <div className="bg-primary/10 rounded-full p-1 mr-3 mt-1">

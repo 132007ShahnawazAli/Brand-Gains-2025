@@ -69,7 +69,7 @@ export default function PortfolioDetailModal({ item, onClose }) {
             <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
               <div>
                 <span className="text-[#bafc50] text-sm font-bold mb-2 block">{item.type}</span>
-                <h2 className="text-white text-2xl md:text-4xl font-medium">{item.title}</h2>
+                <h2 className="text-white text-2xl md:text-4xl font-normal">{item.title}</h2>
               </div>
 
               <Button href={item.link} variant="primary" target="_blank" rel="noopener noreferrer" icon="externalLink">

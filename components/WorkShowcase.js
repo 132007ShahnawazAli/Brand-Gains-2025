@@ -163,7 +163,7 @@ export default function WorkShowcase() {
               </div>
 
               <div className="p-6">
-                <h3 className="text-white text-xl font-medium mb-3 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-white text-xl font-normal mb-3 group-hover:text-primary transition-colors duration-300">
                   {work.title}
                 </h3>
                 <p className="text-white/70 text-sm mb-4">{work.description}</p>

@@ -133,7 +133,7 @@ export default function Navbar() {
                   <motion.li key={link.name} variants={itemVariants} custom={index}>
                     <Link
                       href={link.href}
-                      className="text-white text-4xl font-medium hover:text-primary transition-colors duration-300 block"
+                      className="text-white text-4xl font-normal hover:text-primary transition-colors duration-300 block"
                       onClick={() => setIsOpen(false)}
                     >
                       {link.name}

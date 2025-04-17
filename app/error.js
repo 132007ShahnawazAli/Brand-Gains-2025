@@ -16,7 +16,7 @@ export default function Error({ error, reset }) {
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-medium text-white mb-6">Something went wrong</h1>
+          <h1 className="text-4xl md:text-5xl font-normal text-white mb-6">Something went wrong</h1>
 
           <p className="text-lg text-white/70 mb-10">
             We apologize for the inconvenience. Please try again or contact our support team if the problem persists.

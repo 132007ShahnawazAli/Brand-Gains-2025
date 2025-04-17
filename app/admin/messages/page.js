@@ -114,11 +114,11 @@ export default function MessagesPage() {
       <div className="min-h-screen bg-dark pt-28 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto p-8 rounded-2xl bg-dark-2 border border-white/5">
-            <h1 className="text-2xl font-monument-regular text-white mb-6">Admin Login</h1>
+            <h1 className="text-2xl font-normal text-white mb-6">Admin Login</h1>
 
             <form onSubmit={authenticate} className="space-y-4">
               <div>
-                <label htmlFor="password" className="block text-white font-metropolis-bold mb-2">
+                <label htmlFor="password" className="block text-white font-bold mb-2">
                   Password
                 </label>
                 <input
@@ -138,7 +138,7 @@ export default function MessagesPage() {
 
               <button
                 type="submit"
-                className="w-full bg-[#bafc50] text-black font-metropolis-bold py-3 rounded-lg hover:bg-[#c5ff6b] transition-colors duration-300"
+                className="w-full bg-[#bafc50] text-black font-bold py-3 rounded-lg hover:bg-[#c5ff6b] transition-colors duration-300"
               >
                 Login
               </button>
@@ -153,7 +153,7 @@ export default function MessagesPage() {
     <div className="min-h-screen bg-dark pt-28 pb-16">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-monument-regular text-white">Messages</h1>
+          <h1 className="text-3xl font-normal text-white">Messages</h1>
           <button
             onClick={() => {
               localStorage.removeItem("isAdminAuthenticated")
@@ -177,7 +177,7 @@ export default function MessagesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Messages List */}
             <div className="lg:col-span-1 bg-dark-2 rounded-2xl border border-white/5 p-4 h-[calc(100vh-200px)] overflow-y-auto">
-              <h2 className="text-xl font-metropolis-bold text-white mb-4">Inbox</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Inbox</h2>
 
               {messages.length === 0 ? (
                 <p className="text-white/60 text-center py-8">No messages found</p>
@@ -194,7 +194,7 @@ export default function MessagesPage() {
                       onClick={() => setSelectedMessage(message)}
                     >
                       <div className="flex justify-between items-start mb-2">
-                        <h3 className="font-metropolis-bold text-white">{message.name}</h3>
+                        <h3 className="font-bold text-white">{message.name}</h3>
                         <span className="text-xs text-white/50">{formatDate(message.createdAt)}</span>
                       </div>
                       <p className="text-white/70 text-sm truncate">{message.message}</p>
@@ -224,7 +224,7 @@ export default function MessagesPage() {
                 <div>
                   <div className="flex justify-between items-start mb-6">
                     <div>
-                      <h2 className="text-2xl font-metropolis-bold text-white">{selectedMessage.name}</h2>
+                      <h2 className="text-2xl font-bold text-white">{selectedMessage.name}</h2>
                       <p className="text-[#bafc50]">{selectedMessage.email}</p>
                       <p className="text-white/50 text-sm mt-1">{formatDate(selectedMessage.createdAt)}</p>
                     </div>
@@ -258,19 +258,19 @@ export default function MessagesPage() {
                   </div>
 
                   <div className="bg-dark-3 rounded-xl p-6 border border-white/10">
-                    <h3 className="text-white/70 mb-2 font-metropolis-bold">Message:</h3>
+                    <h3 className="text-white/70 mb-2 font-bold">Message:</h3>
                     <p className="text-white whitespace-pre-wrap">{selectedMessage.message}</p>
                   </div>
 
                   <div className="mt-6">
-                    <h3 className="text-white font-metropolis-bold mb-3">Quick Reply</h3>
+                    <h3 className="text-white font-bold mb-3">Quick Reply</h3>
                     <textarea
                       className="w-full bg-dark-3 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#bafc50] resize-none"
                       rows="5"
                       placeholder="Type your reply here..."
                     ></textarea>
                     <div className="flex justify-end mt-3">
-                      <button className="bg-[#bafc50] text-black px-6 py-2 rounded-lg font-metropolis-bold hover:bg-[#c5ff6b] transition-colors duration-300">
+                      <button className="bg-[#bafc50] text-black px-6 py-2 rounded-lg font-bold hover:bg-[#c5ff6b] transition-colors duration-300">
                         Send Reply
                       </button>
                     </div>

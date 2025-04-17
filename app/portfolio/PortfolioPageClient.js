@@ -208,11 +208,11 @@ export default function PortfolioPageClient() {
       {/* Hero Section */}
       <section className="w-full relative mb-16">
         <div className="container mx-auto px-5 md:px-10">
-          <h1 ref={titleRef} className="text-4xl md:text-7xl lg:text-9xl text-white font-black mb-6">
+          <h1 ref={titleRef} className="text-4xl md:text-7xl lg:text-9xl text-white font-monument-black mb-6">
             OUR WORK
           </h1>
           <div ref={descRef} className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-            <p className="text-white text-lg md:text-xl max-w-2xl font-medium">
+            <p className="text-white text-lg md:text-xl max-w-2xl font-metropolis-medium">
               We create short-form content that doesn&apos;t just help clients grow their business but also builds an
               engaging presence. Browse our portfolio to see how we&apos;ve helped brands stand out.
             </p>
@@ -230,7 +230,7 @@ export default function PortfolioPageClient() {
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
+              className={`px-4 py-2 rounded-full text-sm font-metropolis-bold transition-all duration-300 ${
                 activeFilter === category
                   ? "bg-[#bafc50] text-black"
                   : "bg-transparent text-white border border-white/20 hover:border-white/50"
@@ -275,8 +275,8 @@ export default function PortfolioPageClient() {
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
                 <div className="flex justify-between items-end">
                   <div>
-                    <span className="text-[#bafc50] text-sm font-bold mb-2 block">{item.type}</span>
-                    <h3 className="text-white text-xl md:text-2xl font-medium">{item.title}</h3>
+                    <span className="text-[#bafc50] text-sm font-metropolis-bold mb-2 block">{item.type}</span>
+                    <h3 className="text-white text-xl md:text-2xl font-monument-regular">{item.title}</h3>
                   </div>
                   <div
                     className="bg-[#bafc50] rounded-full p-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
@@ -301,10 +301,10 @@ export default function PortfolioPageClient() {
 
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
-              <h2 className="text-3xl md:text-5xl text-white font-black mb-4">
+              <h2 className="text-3xl md:text-5xl text-white font-monument-black mb-4">
                 Ready to <span className="text-[#bafc50]">Stand Out</span>?
               </h2>
-              <p className="text-white/80 font-medium max-w-xl">
+              <p className="text-white/80 font-metropolis-medium max-w-xl">
                 Let&apos;s create content that captures attention and drives results. Our team is ready to help your
                 brand shine.
               </p>

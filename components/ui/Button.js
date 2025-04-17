@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { Icon } from "./Icons"
 
 const buttonVariants = cva(
-  "font-bold rounded-full transition-all duration-300 inline-flex items-center justify-center",
+  "font-metropolis-bold rounded-full transition-all duration-300 inline-flex items-center justify-center",
   {
     variants: {
       variant: {

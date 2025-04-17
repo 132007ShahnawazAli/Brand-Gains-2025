@@ -144,7 +144,7 @@ export default function Testimonials() {
                       />
                     </div>
                     <div className="text-center md:text-left">
-                      <h4 className="text-white font-metropolis-bold text-xl mb-1">
+                      <h4 className="text-white font-bold text-xl mb-1">
                         {testimonials[currentIndex].name}
                       </h4>
                       <p className="text-primary text-sm mb-2">
@@ -163,7 +163,7 @@ export default function Testimonials() {
                   </div>
                   <div className="md:w-2/3 flex flex-col">
                     <FaQuoteLeft className="text-primary/20 text-4xl mb-6" />
-                    <p className="text-white/90 text-lg md:text-xl italic font-metropolis-medium leading-relaxed">
+                    <p className="text-white/90 text-lg md:text-xl italic font-medium leading-relaxed">
                       "{testimonials[currentIndex].quote}"
                     </p>
                   </div>

@@ -115,7 +115,7 @@ export default function OurProcess() {
         <div className="process-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {processData.map((item, index) => (
             <div key={index} ref={addToRefs} className="card p-8 border border-white/5 relative">
-              <div className="absolute -top-4 -right-4 bg-primary text-dark-2 w-10 h-10 rounded-full flex items-center justify-center font-bold">
+              <div className="absolute top-[10px] right-[10px] bg-primary text-dark-2 w-10 h-10 rounded-full flex items-center justify-center font-bold">
                 {item.number}
               </div>
               <div className="icon-box icon-box-lg mb-6">{item.icon}</div>

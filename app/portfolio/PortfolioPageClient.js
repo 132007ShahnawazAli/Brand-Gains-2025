@@ -285,14 +285,14 @@ export default function PortfolioPageClient() {
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
                   <div className="flex justify-between items-end">
                     <div>
-                      <span className="text-[#bafc50] text-sm font-metropolis-bold mb-2 block">{item.type}</span>
-                      <h3 className="text-white text-xl md:text-2xl font-monument-regular">{item.title}</h3>
-                      {item.views > 0 && (
-                        <div className="flex items-center gap-1 mt-1">
-                          <FiEye size={14} className="text-white/70" />
-                          <span className="text-white/70 text-xs font-metropolis-medium">{item.views} views</span>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-[#bafc50] text-sm font-metropolis-bold">{item.type}</span>
+                        <div className="flex items-center gap-1 bg-dark-3/50 backdrop-blur-sm px-2 py-1 rounded-full">
+                          <FiEye size={12} className="text-[#bafc50]" />
+                          <span className="text-white text-xs font-metropolis-bold">{item.views}</span>
                         </div>
-                      )}
+                      </div>
+                      <h3 className="text-white text-xl md:text-2xl font-monument-regular">{item.title}</h3>
                     </div>
                     <div
                       className="bg-[#bafc50] rounded-full p-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"

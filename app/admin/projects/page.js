@@ -264,7 +264,12 @@ export default function ProjectsPage() {
                           </td>
                           <td className="p-4 text-white/80">{project.client}</td>
                           <td className="p-4 text-white/80">{project.date}</td>
-                          <td className="p-4 text-white/80">{project.views}</td>
+                          <td className="p-4">
+                            <div className="flex items-center gap-1">
+                              <FiEye size={16} className="text-[#bafc50]" />
+                              <span className="text-white font-metropolis-bold">{project.views}</span>
+                            </div>
+                          </td>
                           <td className="p-4">
                             {project.featured ? (
                               <div className="flex items-center gap-2">

@@ -211,9 +211,15 @@ export default function WorkShowcase() {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-white text-xl font-monument-regular mb-3 group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="text-white text-xl font-monument-regular group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <div className="flex items-center gap-1 bg-dark-3 px-2 py-1 rounded-full">
+                      <FiEye size={14} className="text-[#bafc50]" />
+                      <span className="text-white text-xs font-metropolis-bold">{project.views}</span>
+                    </div>
+                  </div>
                   <p className="text-white/70 text-sm mb-4">{project.description}</p>
                   <Link
                     href={`/portfolio?project=${project._id || project.id}`}

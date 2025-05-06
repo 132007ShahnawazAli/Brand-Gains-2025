@@ -17,6 +17,7 @@ export default function NewProjectPage() {
     link: "",
     featured: false,
     featuredOrder: 1,
+    views: 0,
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -227,6 +228,25 @@ export default function NewProjectPage() {
                   className="w-full bg-dark-3 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#bafc50]"
                   placeholder="https://example.com/project"
                 />
+              </div>
+
+              <div>
+                <label htmlFor="views" className="block text-white font-metropolis-bold mb-2">
+                  Views / Results
+                </label>
+                <input
+                  type="number"
+                  id="views"
+                  name="views"
+                  value={formData.views}
+                  onChange={handleChange}
+                  className="w-full bg-dark-3 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#bafc50]"
+                  placeholder="0"
+                  min="0"
+                />
+                <p className="text-white/60 text-sm mt-1">
+                  Enter the number of views or results this project has achieved
+                </p>
               </div>
 
               <div className="md:col-span-2">

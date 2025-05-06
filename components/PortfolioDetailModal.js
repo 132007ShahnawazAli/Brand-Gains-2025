@@ -69,14 +69,14 @@ export default function PortfolioDetailModal({ item, onClose }) {
           <div className="p-6 md:p-8">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
               <div>
-                <span className="text-[#bafc50] text-sm font-metropolis-bold mb-2 block">{item.type}</span>
-                <h2 className="text-white text-2xl md:text-4xl font-monument-regular">{item.title}</h2>
-                {item.views > 0 && (
-                  <div className="flex items-center gap-1 mt-2">
-                    <FiEye size={16} className="text-white/70" />
-                    <span className="text-white/70 text-sm font-metropolis-medium">{item.views} views</span>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-[#bafc50] text-sm font-metropolis-bold">{item.type}</span>
+                  <div className="flex items-center gap-1 bg-dark-3/80 px-3 py-1 rounded-full">
+                    <FiEye size={14} className="text-[#bafc50]" />
+                    <span className="text-white text-sm font-metropolis-bold">{item.views} views</span>
                   </div>
-                )}
+                </div>
+                <h2 className="text-white text-2xl md:text-4xl font-monument-regular">{item.title}</h2>
               </div>
 
               {item.link && (

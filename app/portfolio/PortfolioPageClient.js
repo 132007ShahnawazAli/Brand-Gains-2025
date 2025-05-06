@@ -1,118 +1,13 @@
 "use client"
 import { useState, useContext, useEffect, useRef } from "react"
+import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import { AppContext } from "@/components/Providers"
 import CustomCursor from "@/components/CustomCursor"
 import PortfolioDetailModal from "@/components/PortfolioDetailModal"
 import { Button } from "@/components/ui/Button"
 import { Icon } from "@/components/ui/Icons"
-
-// Portfolio data structure
-const portfolioItems = [
-  {
-    id: 1,
-    title: "Brand Awareness Campaign",
-    type: "EDIT",
-    thumbnail: "https://placehold.co/800x600/png?text=Image+here",
-    mediaType: "image",
-    link: "https://example.com/project1",
-    description: "A series of short-form videos designed to increase brand awareness across social media platforms.",
-    client: "Fashion Retailer",
-    date: "2023",
-  },
-  {
-    id: 2,
-    title: "Product Launch Video",
-    type: "MOTION",
-    thumbnail: "https://placehold.co/800x600/png?text=Product+Launch",
-    mediaType: "video",
-    videoUrl: "https://cdn.cuberto.com/cb/hello/overview/1.mp4",
-    link: "https://example.com/project2",
-    description: "Dynamic product reveal with custom motion graphics and sound design.",
-    client: "Tech Startup",
-    date: "2023",
-  },
-  {
-    id: 3,
-    title: "Social Media Series",
-    type: "CAMPAIGN",
-    thumbnail: "https://placehold.co/800x600/png?text=Social+Media",
-    mediaType: "image",
-    link: "https://example.com/project3",
-    description: "A 12-part series of short videos optimized for Instagram and TikTok engagement.",
-    client: "Lifestyle Brand",
-    date: "2022",
-  },
-  {
-    id: 4,
-    title: "Promotional Content",
-    type: "EDIT",
-    thumbnail: "https://placehold.co/800x600/png?text=Promotional+Content",
-    mediaType: "video",
-    videoUrl: "https://cdn.cuberto.com/cb/hello/overview/3.webm",
-    link: "https://example.com/project4",
-    description: "Fast-paced promotional content with custom transitions and effects.",
-    client: "Sports Brand",
-    date: "2023",
-  },
-  {
-    id: 5,
-    title: "Brand Story",
-    type: "NARRATIVE",
-    thumbnail: "https://placehold.co/800x600/png?text=Brand+Story",
-    mediaType: "image",
-    link: "https://example.com/project5",
-    description: "Emotional storytelling through a series of connected short-form videos.",
-    client: "Non-profit Organization",
-    date: "2022",
-  },
-  {
-    id: 6,
-    title: "Product Showcase",
-    type: "COMMERCIAL",
-    thumbnail: "https://placehold.co/800x600/png?text=Product+Showcase",
-    mediaType: "video",
-    videoUrl: "https://cdn.cuberto.com/cb/hello/overview/1.mp4",
-    link: "https://example.com/project6",
-    description: "Visually striking product showcase with detailed close-ups and dynamic transitions.",
-    client: "Luxury Brand",
-    date: "2023",
-  },
-  {
-    id: 7,
-    title: "Viral Marketing Campaign",
-    type: "CAMPAIGN",
-    thumbnail: "https://placehold.co/800x600/png?text=Viral+Marketing",
-    mediaType: "image",
-    link: "https://example.com/project7",
-    description: "Trend-focused content that generated over 2 million views across platforms.",
-    client: "Entertainment Company",
-    date: "2023",
-  },
-  {
-    id: 8,
-    title: "Testimonial Series",
-    type: "EDIT",
-    thumbnail: "https://placehold.co/800x600/png?text=Testimonial+Series",
-    mediaType: "video",
-    videoUrl: "https://cdn.cuberto.com/cb/hello/overview/3.webm",
-    link: "https://example.com/project8",
-    description: "Authentic customer testimonials edited for maximum impact and engagement.",
-    client: "Service Provider",
-    date: "2022",
-  },
-  {
-    id: 9,
-    title: "Event Highlights",
-    type: "EDIT",
-    thumbnail: "https://placehold.co/800x600/png?text=Event+Highlights",
-    mediaType: "image",
-    link: "https://example.com/project9",
-    description: "Capturing the energy and excitement of a major product launch event.",
-    client: "Tech Company",
-    date: "2023",
-  },
-]
+import { FiEye } from "react-icons/fi"
 
 // Filter categories
 const categories = ["ALL", "EDIT", "MOTION", "CAMPAIGN", "NARRATIVE", "COMMERCIAL"]
@@ -120,12 +15,59 @@ const categories = ["ALL", "EDIT", "MOTION", "CAMPAIGN", "NARRATIVE", "COMMERCIA
 export default function PortfolioPageClient() {
   const [activeFilter, setActiveFilter] = useState("ALL")
   const [selectedItem, setSelectedItem] = useState(null)
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
   const { setCursorType } = useContext(AppContext)
   const portfolioRef = useRef(null)
   const titleRef = useRef(null)
   const descRef = useRef(null)
   const filterRef = useRef(null)
   const gridItemsRef = useRef([])
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    // Fetch all projects
+    const fetchProjects = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch("/api/projects")
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects")
+        }
+        const data = await response.json()
+        setProjects(data.data)
+
+        // Check if there's a project ID in the URL
+        const projectId = searchParams.get("project")
+        if (projectId) {
+          const project = data.data.find((p) => p._id === projectId)
+          if (project) {
+            setSelectedItem(project)
+            // Increment view count
+            incrementProjectView(projectId)
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching projects:", error)
+        setError("Failed to load projects")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProjects()
+  }, [searchParams])
+
+  const incrementProjectView = async (projectId) => {
+    try {
+      await fetch(`/api/projects/${projectId}/view`, {
+        method: "POST",
+      })
+    } catch (error) {
+      console.error("Error incrementing view count:", error)
+    }
+  }
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.gsap) {
@@ -160,11 +102,12 @@ export default function PortfolioPageClient() {
   }, [activeFilter])
 
   // Filter portfolio items based on selected category
-  const filteredItems =
-    activeFilter === "ALL" ? portfolioItems : portfolioItems.filter((item) => item.type === activeFilter)
+  const filteredItems = activeFilter === "ALL" ? projects : projects.filter((item) => item.type === activeFilter)
 
   const handleItemClick = (item) => {
     setSelectedItem(item)
+    // Increment view count
+    incrementProjectView(item._id)
   }
 
   const handleCloseModal = () => {
@@ -196,6 +139,50 @@ export default function PortfolioPageClient() {
       )
     }
   }, [filteredItems])
+
+  // Fallback projects in case no projects are available
+  const fallbackProjects = [
+    {
+      id: 1,
+      title: "Brand Awareness Campaign",
+      type: "EDIT",
+      thumbnail: "https://placehold.co/800x600/png?text=Image+here",
+      mediaType: "image",
+      link: "https://example.com/project1",
+      description: "A series of short-form videos designed to increase brand awareness across social media platforms.",
+      client: "Fashion Retailer",
+      date: "2023",
+      views: 0,
+    },
+    {
+      id: 2,
+      title: "Product Launch Video",
+      type: "MOTION",
+      thumbnail: "https://placehold.co/800x600/png?text=Image+here",
+      mediaType: "video",
+      videoUrl: "https://cdn.cuberto.com/cb/hello/overview/1.mp4",
+      link: "https://example.com/project2",
+      description: "Dynamic product reveal with custom motion graphics and sound design.",
+      client: "Tech Startup",
+      date: "2023",
+      views: 0,
+    },
+    {
+      id: 3,
+      title: "Social Media Series",
+      type: "CAMPAIGN",
+      thumbnail: "https://placehold.co/800x600/png?text=Image+here",
+      mediaType: "image",
+      link: "https://example.com/project3",
+      description: "A 12-part series of short videos optimized for Instagram and TikTok engagement.",
+      client: "Lifestyle Brand",
+      date: "2022",
+      views: 0,
+    },
+  ]
+
+  // Use projects if available, otherwise use fallback
+  const displayProjects = projects.length > 0 ? filteredItems : fallbackProjects
 
   return (
     <main ref={portfolioRef} className="min-h-screen bg-[#021814] pt-24 pb-16 overflow-hidden relative">
@@ -244,54 +231,84 @@ export default function PortfolioPageClient() {
 
       {/* Portfolio Grid */}
       <section className="container mx-auto px-5 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filteredItems.map((item) => (
-            <div
-              key={item.id}
-              ref={addToRefs}
-              className="group relative bg-[#171919] rounded-2xl overflow-hidden cursor-pointer"
-              onClick={() => handleItemClick(item)}
-              onMouseEnter={() => item.mediaType === "video" && setCursorType("video")}
-              onMouseLeave={() => setCursorType("default")}
-            >
-              {/* Media Container */}
-              <div className="aspect-[4/3] relative overflow-hidden">
-                {item.mediaType === "image" ? (
-                  <Image
-                    src={item.thumbnail || "/placeholder.svg"}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="w-full h-full relative">
-                    <div className="absolute inset-0 bg-black/30 z-10 group-hover:opacity-0 transition-opacity duration-300"></div>
-                    <video src={item.videoUrl} className="w-full h-full object-cover" loop muted playsInline autoPlay />
-                  </div>
-                )}
-              </div>
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="w-12 h-12 border-4 border-[#bafc50] border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : error ? (
+          <div className="text-center text-white/70 py-12">
+            <p>{error}</p>
+            <Button variant="primary" className="mt-4" onClick={() => window.location.reload()}>
+              Try Again
+            </Button>
+          </div>
+        ) : displayProjects.length === 0 ? (
+          <div className="text-center text-white/70 py-12">
+            <p>No projects found for this category.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {displayProjects.map((item) => (
+              <div
+                key={item._id || item.id}
+                ref={addToRefs}
+                className="group relative bg-[#171919] rounded-2xl overflow-hidden cursor-pointer"
+                onClick={() => handleItemClick(item)}
+                onMouseEnter={() => item.mediaType === "video" && setCursorType("video")}
+                onMouseLeave={() => setCursorType("default")}
+              >
+                {/* Media Container */}
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  {item.mediaType === "image" ? (
+                    <Image
+                      src={item.thumbnail || "/placeholder.svg"}
+                      alt={item.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full relative">
+                      <div className="absolute inset-0 bg-black/30 z-10 group-hover:opacity-0 transition-opacity duration-300"></div>
+                      <video
+                        src={item.videoUrl}
+                        className="w-full h-full object-cover"
+                        loop
+                        muted
+                        playsInline
+                        autoPlay
+                      />
+                    </div>
+                  )}
+                </div>
 
-              {/* Content Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                <div className="flex justify-between items-end">
-                  <div>
-                    <span className="text-[#bafc50] text-sm font-metropolis-bold mb-2 block">{item.type}</span>
-                    <h3 className="text-white text-xl md:text-2xl font-monument-regular">{item.title}</h3>
-                  </div>
-                  <div
-                    className="bg-[#bafc50] rounded-full p-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      window.open(item.link, "_blank")
-                    }}
-                  >
-                    <Icon name="externalLink" className="text-black" size={20} />
+                {/* Content Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <span className="text-[#bafc50] text-sm font-metropolis-bold mb-2 block">{item.type}</span>
+                      <h3 className="text-white text-xl md:text-2xl font-monument-regular">{item.title}</h3>
+                      {item.views > 0 && (
+                        <div className="flex items-center gap-1 mt-1">
+                          <FiEye size={14} className="text-white/70" />
+                          <span className="text-white/70 text-xs font-metropolis-medium">{item.views} views</span>
+                        </div>
+                      )}
+                    </div>
+                    <div
+                      className="bg-[#bafc50] rounded-full p-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        window.open(item.link, "_blank")
+                      }}
+                    >
+                      <Icon name="externalLink" className="text-black" size={20} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* CTA Section */}

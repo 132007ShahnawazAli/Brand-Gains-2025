@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import Image from "next/image"
 import { Icon } from "./ui/Icons"
 import { Button } from "./ui/Button"
+import { FiEye } from "react-icons/fi"
 
 export default function PortfolioDetailModal({ item, onClose }) {
   useEffect(() => {
@@ -68,35 +69,49 @@ export default function PortfolioDetailModal({ item, onClose }) {
           <div className="p-6 md:p-8">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
               <div>
-                <span className="text-[#bafc50] text-sm font-bold mb-2 block">{item.type}</span>
-                <h2 className="text-white text-2xl md:text-4xl font-normal">{item.title}</h2>
+                <span className="text-[#bafc50] text-sm font-metropolis-bold mb-2 block">{item.type}</span>
+                <h2 className="text-white text-2xl md:text-4xl font-monument-regular">{item.title}</h2>
+                {item.views > 0 && (
+                  <div className="flex items-center gap-1 mt-2">
+                    <FiEye size={16} className="text-white/70" />
+                    <span className="text-white/70 text-sm font-metropolis-medium">{item.views} views</span>
+                  </div>
+                )}
               </div>
 
-              <Button href={item.link} variant="primary" target="_blank" rel="noopener noreferrer" icon="externalLink">
-                View Project
-              </Button>
+              {item.link && (
+                <Button
+                  href={item.link}
+                  variant="primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  icon="externalLink"
+                >
+                  View Project
+                </Button>
+              )}
             </div>
 
             {/* Details */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div>
-                <h3 className="text-[#bafc50] text-sm font-bold mb-2">Client</h3>
+                <h3 className="text-[#bafc50] text-sm font-metropolis-bold mb-2">Client</h3>
                 <p className="text-white">{item.client}</p>
               </div>
               <div>
-                <h3 className="text-[#bafc50] text-sm font-bold mb-2">Year</h3>
+                <h3 className="text-[#bafc50] text-sm font-metropolis-bold mb-2">Year</h3>
                 <p className="text-white">{item.date}</p>
               </div>
               <div>
-                <h3 className="text-[#bafc50] text-sm font-bold mb-2">Category</h3>
+                <h3 className="text-[#bafc50] text-sm font-metropolis-bold mb-2">Category</h3>
                 <p className="text-white">{item.type}</p>
               </div>
             </div>
 
             {/* Description */}
             <div>
-              <h3 className="text-[#bafc50] text-sm font-bold mb-2">About the Project</h3>
-              <p className="text-white/80 font-medium">{item.description}</p>
+              <h3 className="text-[#bafc50] text-sm font-metropolis-bold mb-2">About the Project</h3>
+              <p className="text-white/80 font-metropolis-medium">{item.description}</p>
             </div>
           </div>
         </div>
